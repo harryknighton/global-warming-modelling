@@ -3,7 +3,8 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-numTimeSteps = int(input(""))
+# numTimeSteps = int(input(""))  # Needed for Coursera automatic grading
+numTimeSteps = 20
 timeStep = 100
 luminosity = 1350  # W/m2
 albedo = 0.3
@@ -42,6 +43,6 @@ for _ in range(numTimeSteps):
     heatFluxes.append(influx - outfluxes[-1])
     heatFluxesPerTimestep.append(heatFluxes[-1] * secondsInYear)
 
-print(temperatures[-1], outfluxes[-1])
-# plt.plot(np.arange(numTimeSteps + 1) * timeStep, temperatures)
-# plt.show()
+# print(temperatures[-1], outfluxes[-1])  # Needed for Coursera automatic grading
+plt.plot(np.arange(numTimeSteps + 1) * timeStep, temperatures)
+plt.show()
