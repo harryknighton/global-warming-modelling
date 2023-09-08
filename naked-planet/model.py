@@ -3,6 +3,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Define constants
 # numTimeSteps = int(input(""))  # Needed for Coursera automatic grading
 numTimeSteps = 20
 timeStep = 100
@@ -22,13 +23,13 @@ waterMass = waterVolume * waterDensity
 waterSpecificHeatCapacity = 4200  # J/kg K
 heatCapacity = waterSpecificHeatCapacity * waterMass / waterSurfaceArea  # J/m2 K
 
+# Initialise simulation state
 heatContents = []  # J/m2
 temperatures = []  # K
 outfluxes = []  # W/m2
 heatFluxes = []  # W/m2
 heatFluxesPerTimestep = []  # J/m2
 
-# Initialise starting state
 influx = luminosity * (1 - albedo) / 4
 temperatures.append(initialTemperature)
 heatContents.append(initialTemperature * heatCapacity)
@@ -36,6 +37,7 @@ outfluxes.append(stefanBoltzmann * emissivity * pow(initialTemperature, 4))
 heatFluxes.append(influx - outfluxes[0])
 heatFluxesPerTimestep.append(heatFluxes[0] * secondsInYear)
 
+# Iteratively apply state change equations
 for _ in range(numTimeSteps):
     heatContents.append(heatContents[-1] + heatFluxesPerTimestep[-1] * timeStep)
     temperatures.append(heatContents[-1] / heatCapacity)
